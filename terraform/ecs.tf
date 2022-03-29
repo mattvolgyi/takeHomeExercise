@@ -111,7 +111,7 @@ resource "aws_lb_target_group" "helloWorld" {
 
   health_check {
     enabled = true
-    path    = "/health"
+    path    = "/"
   }
 
   depends_on = [aws_alb.helloWorld]
