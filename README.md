@@ -36,5 +36,5 @@ docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/hello-world-ecr:latest
 
 How to run locally:
 ```
-docker run -p 8080:80 -d hello-world-ecr
+docker run -p 80:80 -d hello-world-ecr
 ```
