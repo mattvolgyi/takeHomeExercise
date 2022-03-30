@@ -1,4 +1,4 @@
-# Nginx-hello-world
+# Hello-world
 
 NGINX webserver that servers a simple page containing a simple hello world
 

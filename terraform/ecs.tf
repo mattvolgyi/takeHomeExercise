@@ -26,7 +26,7 @@ resource "aws_ecs_service" "hello-world" {
   load_balancer {
   container_name = "hello-world"
   target_group_arn = "${aws_lb_target_group.helloWorld.arn}"
-  container_port = "80"
+  container_port = "5000"
   }
 }
 
@@ -44,8 +44,8 @@ resource "aws_ecs_task_definition" "hello-world" {
       "image": "${aws_ecr_repository.hello-world-ecr.repository_url}:latest",
       "portMappings": [
         {
-          "containerPort": 80,
-          "hostPort": 80
+          "containerPort": 5000,
+          "hostPort": 5000
         }
       ],
       "logConfiguration": {
@@ -104,14 +104,14 @@ resource "aws_ecs_cluster" "app" {
 
 resource "aws_lb_target_group" "helloWorld" {
   name        = "helloWorld"
-  port        = 80
+  port        = 5000
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = aws_vpc.app_vpc.id
 
   health_check {
     enabled = true
-    path    = "/"
+    path    = "/health"
   }
 
   depends_on = [aws_alb.helloWorld]
